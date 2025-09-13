@@ -1,0 +1,19 @@
+{
+    "name": "artur/criptografia-classica",
+    "autoload": {
+        "psr-4": {
+            "CriptografiaClassica\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Artur Alves",
+            "email": "arturalvesdeoliveira28@gmail.com"
+        },
+        {
+            "name": "Guilherme Rosa",
+            "email": "bealf.gui@gmail.com"
+        }
+    ],
+    "require": {}
+}
