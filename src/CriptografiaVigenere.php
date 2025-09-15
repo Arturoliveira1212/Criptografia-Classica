@@ -55,6 +55,40 @@ class CriptografiaVigenere implements Criptografia {
     }
 
     public function descriptografar(string $texto, string $chave): string {
-        return '';
+        $alfabeto = $this->gerarAlfabeto();
+        $resultado = $this->obterTextoDescriptografado($texto, $chave, $alfabeto);
+
+        return $resultado;
     }
+
+    private function obterTextoDescriptografado(string $texto, string $chave, array $alfabeto): string {
+        $tamanho = count($alfabeto);
+        $texto = strtoupper($texto);
+        $chave = strtoupper($chave);
+
+        $resultado = '';
+        $j = 0;
+
+        for ($i = 0; $i < strlen($texto); $i++) {
+            $char = $texto[$i];
+
+            $letraChave = $chave[$j % strlen($chave)];
+
+            $posicaoTexto = array_search($char, $alfabeto);
+            $posicaoChave = array_search($letraChave, $alfabeto);
+
+            if ($posicaoTexto === false) {
+                $resultado .= $char;
+            } else {
+                $novaPosicao = ($posicaoTexto - $posicaoChave + $tamanho) % $tamanho;
+                $resultado .= $alfabeto[$novaPosicao];
+            }
+
+            $j++;
+        }
+
+        return $resultado;
+    }
+
+
 }
