@@ -2,6 +2,7 @@
 
 use CriptografiaClassica\CriptografiaTransposicaoColunar;
 use CriptografiaClassica\CriptografiaVigenere;
+use CriptografiaClassica\CriptografiaDES;
 
 require_once 'vendor/autoload.php';
 
@@ -33,18 +34,22 @@ function contemApenasLetras(string $texto): bool {
 function criptografar(string $texto, string $chave): string {
     $criptografiaTransposicaoColunar = new CriptografiaTransposicaoColunar();
     $criptografiaVigenere = new CriptografiaVigenere();
+    $criptografiaDES = new CriptografiaDES();
 
     $textoCriptografadoTransposicao = $criptografiaTransposicaoColunar->criptografar($texto, $chave);
     $textoCriptografadoVigenere = $criptografiaVigenere->criptografar($textoCriptografadoTransposicao, $chave);
+    $textoCriptografadoDES = $criptografiaDES->criptografar($textoCriptografadoVigenere, $chave);
 
-    return $textoCriptografadoVigenere;
+    return $textoCriptografadoDES;
 }
 
 function descriptografar(string $texto, string $chave): string {
     $criptografiaTransposicaoColunar = new CriptografiaTransposicaoColunar();
     $criptografiaVigenere = new CriptografiaVigenere();
+    $criptografiaDES = new CriptografiaDES();
 
-    $textoDescriptografadoVigenere = $criptografiaVigenere->descriptografar($texto, $chave);
+    $textoDescriptografadoDES = $criptografiaDES->descriptografar($texto, $chave);
+    $textoDescriptografadoVigenere = $criptografiaVigenere->descriptografar($textoDescriptografadoDES, $chave);
     $textoDescriptografadoTransposicao = $criptografiaTransposicaoColunar->descriptografar($textoDescriptografadoVigenere, $chave);
 
     return $textoDescriptografadoTransposicao;
