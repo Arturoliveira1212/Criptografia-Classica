@@ -20,10 +20,14 @@ Este projeto implementa algoritmos de criptografia clássica em PHP.
 ## Como executar
 Para rodar o projeto, utilize o comando:
 ```bash
-php index.php
+php criptografar.php
+```
+ou
+```bash
+php descriptografar.php
 ```
 
-O arquivo `index.php` é o ponto de entrada principal do sistema.
+Esses arquivos são o ponto de entrada principal do sistema, permitindo a criptografia e a descriptografia de um texto.
 
 ## Observações
 - Aceitamos no texto enviado apenas caracteres alfabéticos (A-Z, a-z), sem cedilha (ç) ou caracteres especiais, exceto o espaço (' ').
