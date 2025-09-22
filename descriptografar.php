@@ -6,10 +6,8 @@ use CriptografiaClassica\CriptografiaDES;
 
 require_once 'vendor/autoload.php';
 
-$texto = readline('Digite o texto criptografado: ');
+$textoCriptografado = readline('Digite o texto criptografado: ');
 $chave = readline('Digite a chave: ');
-
-validarEntrada($textoCriptografado, $chave);
 
 $textoDescriptografado = descriptografar($textoCriptografado, $chave);
 

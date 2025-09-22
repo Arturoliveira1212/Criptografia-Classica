@@ -5,7 +5,7 @@ namespace CriptografiaClassica;
 use Exception;
 
 class CriptografiaDES implements Criptografia {
-    private const CIPHER_METHOD = 'DES-ECB';
+    private const CIPHER_METHOD = 'DES-EDE-ECB';
 
     public function criptografar(string $texto, string $chave): string {
         $chaveAjustada = $this->ajustarChave($chave);
