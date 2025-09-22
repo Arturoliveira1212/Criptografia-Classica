@@ -12,10 +12,9 @@ $chave = readline('Digite a chave: ');
 validarEntrada($texto, $chave);
 
 $textoCriptografado = criptografar($texto, $chave);
-$textoDescriptografado = descriptografar($textoCriptografado, $chave);
 
+echo 'Texto original: ' . $texto . PHP_EOL;
 echo 'Texto criptografado: ' . $textoCriptografado . PHP_EOL;
-echo 'Texto descriptografado: ' . $textoDescriptografado . PHP_EOL;
 
 function validarEntrada(string $texto, string $chave): void {
     if (empty($texto) || empty($chave)) {
@@ -41,16 +40,4 @@ function criptografar(string $texto, string $chave): string {
     $textoCriptografadoDES = $criptografiaDES->criptografar($textoCriptografadoVigenere, $chave);
 
     return $textoCriptografadoDES;
-}
-
-function descriptografar(string $texto, string $chave): string {
-    $criptografiaTransposicaoColunar = new CriptografiaTransposicaoColunar();
-    $criptografiaVigenere = new CriptografiaVigenere();
-    $criptografiaDES = new CriptografiaDES();
-
-    $textoDescriptografadoDES = $criptografiaDES->descriptografar($texto, $chave);
-    $textoDescriptografadoVigenere = $criptografiaVigenere->descriptografar($textoDescriptografadoDES, $chave);
-    $textoDescriptografadoTransposicao = $criptografiaTransposicaoColunar->descriptografar($textoDescriptografadoVigenere, $chave);
-
-    return $textoDescriptografadoTransposicao;
 }
