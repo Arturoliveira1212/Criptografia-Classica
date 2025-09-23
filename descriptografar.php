@@ -6,13 +6,16 @@ use CriptografiaClassica\CriptografiaDES;
 
 require_once 'vendor/autoload.php';
 
-$textoCriptografado = readline('Digite o texto criptografado: ');
-$chave = readline('Digite a chave: ');
+try {
+    $textoCriptografado = readline('Digite o texto criptografado: ');
+    $chave = readline('Digite a chave: ');
 
-$textoDescriptografado = descriptografar($textoCriptografado, $chave);
-
-echo 'Texto criptografado: ' . $textoCriptografado . PHP_EOL;
-echo 'Texto descriptografado: ' . $textoDescriptografado . PHP_EOL;
+    $textoDescriptografado = descriptografar($textoCriptografado, $chave);
+    echo 'Texto descriptografado: ' . $textoDescriptografado . PHP_EOL;
+} catch (Throwable $th) {
+    echo 'Não foi possível descriptografar o texto. Verifique se o texto e a chave estão corretos.' . PHP_EOL;
+    die();
+}
 
 function descriptografar(string $texto, string $chave): string {
     $criptografiaTransposicaoColunar = new CriptografiaTransposicaoColunar();

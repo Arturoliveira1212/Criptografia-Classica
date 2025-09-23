@@ -6,15 +6,17 @@ use CriptografiaClassica\CriptografiaDES;
 
 require_once 'vendor/autoload.php';
 
-$texto = readline('Digite o texto: ');
-$chave = readline('Digite a chave: ');
+try {
+    $texto = readline('Digite o texto: ');
+    $chave = readline('Digite a chave: ');
+    validarEntrada($texto, $chave);
 
-validarEntrada($texto, $chave);
-
-$textoCriptografado = criptografar($texto, $chave);
-
-echo 'Texto original: ' . $texto . PHP_EOL;
-echo 'Texto criptografado: ' . $textoCriptografado . PHP_EOL;
+    $textoCriptografado = criptografar($texto, $chave);
+    echo 'Texto criptografado: ' . $textoCriptografado . PHP_EOL;
+} catch (Throwable $th) {
+    echo 'Não foi possível criptografar o texto. Verifique se o texto e a chave estão corretos.' . PHP_EOL;
+    die();
+}
 
 function validarEntrada(string $texto, string $chave): void {
     if (empty($texto) || empty($chave)) {
